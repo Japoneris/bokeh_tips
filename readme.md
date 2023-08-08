@@ -10,4 +10,4 @@ As the documentation is sometimes shady, here you will have some examples in the
 # Projects
 
 - [Maze](maze/): This is a "maze" generator. You start from one page, you select one option, and move to another page.
-- [Exam](): How to make an exam where it is difficult to cheat.
+- [Exam](exam/): How to make an exam where it is difficult to cheat.

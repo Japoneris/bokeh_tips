@@ -1,0 +1,27 @@
+[
+  {
+    "text": "Adam can mow a field in 1 hour, in the same time Bob can mow 2 fields, if they work together how long does it take them to mow a field? ",
+    "answers": ["20 min", "30 min", "40 min", "1 hour, anyway, there is only one landmower"],
+    "good": 0
+  },
+  {
+    "text": "What is the square root of 12345678987654321?",
+    "answers": ["11,111,111", "111,111,111", "1,111,111,111", "11,111,111,111"],
+    "good": 1
+  },
+  {
+    "text": "You start in the top left corner of a 6x6 grid, your goal is to get to the bottom right corner. You can only move to the right or down. You can't move diagonally and you can't move backwards. \\n How many different ways are there to get from the start to the finish? ",
+    "answers": ["36", "200", "252", "512"],
+    "good": 2
+  },
+  {
+    "text": "You have 25 horses, you want to pick the fastest 3 horses out of those 25. In each race, only 5 horses can run at the same time. What is the minimum number of races required to find the 3 fastest horses without using a stopwatch? ",
+    "answers": ["5", "6", "7", "8", "9"],
+    "good": 2
+  },
+  {
+    "text": "100 black and white socks are in a drawer. How many socks must you pull out before you are guaranteed to have a pair? ",
+    "answers": ["3", "50", "51"],
+    "good": 0
+  }
+]

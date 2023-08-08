@@ -1,0 +1,12 @@
+[
+  {
+    "text": "Which animal is similar to the lion ?",
+    "answers": ["The dog", "The frog", "The cat"],
+    "good": 2
+  },
+  {
+    "text": "What is the result of 48 x 12 ?",
+    "answers": ["426", "576", "612", "512"],
+    "good": 1
+  }
+]

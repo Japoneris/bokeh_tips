@@ -1,0 +1,25 @@
+{"1": {
+    "text": "You are on the first page! Welcome. You have to select where you want to go",
+    "next": [["2", "Go to the left"], ["3", "Go to the right"]]
+    },
+ "2": {
+     "text": "You decided to go left, and arrive in front of the forest. What would you do ?",
+     "next": [["1", "Go back to the previous place"], ["4", "Enter in the forest"]]
+ },
+ "3": {
+     "text": "You arrive in front of the house. What would you do ?",
+     "next": [["5", "Try to open the door"], ["6", "Try to look if there is someone in"]]
+},
+ "4": {
+     "text": "You entered the forest, but unfortunately, you get eaten by a werewolf. The story ends here",
+     "next": []
+ },
+ "5": {
+     "text": "The door is unlocked. This is the end of the prototype.",
+     "next": []
+ },
+ "6": {
+    "text": "It doesn't seem to be anyone in the house.",
+     "next": [["5", "Try to open the door"]]
+ }
+}

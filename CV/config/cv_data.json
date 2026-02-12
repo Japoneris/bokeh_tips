@@ -1,0 +1,141 @@
+{
+  "settings": {
+    "horizontal_size": [1000, 300],
+    "vertical_size": [300, 1000],
+    "line_width": 10,
+    "marker_size": 20,
+    "marker_line_width": 5,
+    "year_label_color": "#5697B5",
+    "year_grid_color": "#8cc6bc",
+    "year_grid_alpha": 0.2,
+    "lane_spacing": 1.0,
+    "url_pattern": "#@click",
+    "tools": "pan,wheel_zoom,save,reset"
+  },
+  "categories": {
+    "education": {
+      "line_color": "#5697B5",
+      "fill_color": "#8cc6bc"
+    },
+    "studies": {
+      "line_color": "#5697B5",
+      "fill_color": "#8cc6bc"
+    },
+    "work": {
+      "line_color": "#5697B5",
+      "fill_color": "#8cc6bc"
+    },
+    "research": {
+      "line_color": "#5697B5",
+      "fill_color": "#8cc6bc"
+    }
+  },
+  "experiences": [
+    {
+      "label": "Prep classes",
+      "start_date": "2011-07-01",
+      "end_date": "2013-07-01",
+      "lane": 0,
+      "category": "education",
+      "click": "prep-classes"
+    },
+    {
+      "label": "Chimie ParisTech",
+      "start_date": "2013-07-01",
+      "end_date": "2016-07-01",
+      "lane": 0,
+      "category": "education",
+      "click": "enscp"
+    },
+    {
+      "label": "M2 SMNO",
+      "start_date": "2015-07-01",
+      "end_date": "2016-07-01",
+      "lane": 1,
+      "category": "studies",
+      "click": "smno"
+    },
+    {
+      "label": "Sivienn",
+      "start_date": "2016-01-01",
+      "end_date": "2016-09-01",
+      "lane": 2,
+      "category": "work",
+      "click": "sivienn"
+    },
+    {
+      "label": "CRI",
+      "start_date": "2016-09-01",
+      "end_date": "2017-01-01",
+      "lane": 2,
+      "category": "work",
+      "click": "cri"
+    },
+    {
+      "label": "Wallix",
+      "start_date": "2017-01-01",
+      "end_date": "2017-09-01",
+      "lane": 2,
+      "category": "work",
+      "click": "wallix"
+    },
+    {
+      "label": "Keymetrics",
+      "start_date": "2017-09-01",
+      "end_date": "2019-09-01",
+      "lane": 2,
+      "category": "work",
+      "click": "keymetrics"
+    },
+    {
+      "label": "Ingenico/Worldline",
+      "start_date": "2019-09-01",
+      "end_date": "2026-03-31",
+      "lane": 2,
+      "category": "work",
+      "click": "ingenico"
+    },
+    {
+      "label": "PhD Thesis at ENS",
+      "start_date": "2019-09-01",
+      "end_date": "2022-04-01",
+      "lane": 3,
+      "category": "research",
+      "click": "phd-thesis"
+    },
+    {
+      "label": "Student at ENS",
+      "start_date": "2017-01-01",
+      "end_date": "2019-09-01",
+      "lane": 3,
+      "category": "research",
+      "click": "student"
+    },
+    {
+      "label": "Teacher at ESIEE",
+      "start_date": "2023-01-01",
+      "end_date": "2023-08-01",
+      "lane": 3,
+      "category": "research",
+      "click": "teaching"
+    }
+  ],
+  "events": [
+    {
+      "label": "Graduation",
+      "date": "2016-07-01",
+      "lane": 0,
+      "category": "education",
+      "marker": "diamond",
+      "click": "graduation"
+    },
+    {
+      "label": "PhD Defense",
+      "date": "2022-04-01",
+      "lane": 3,
+      "category": "research",
+      "marker": "star",
+      "click": "phd-thesis"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+---
+  layout: maze
+  title: Le manoir de l'enfer
+  author: Japoneris
+  bokeh: True
+  project_base_url: /maze/manoir/
+  project_name: rules
+---

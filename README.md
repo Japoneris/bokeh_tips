@@ -12,7 +12,3 @@ As the documentation is sometimes shady, here you will have some examples in the
 - [Maze](maze/): This is a "maze" generator. You start from one page, you select one option, and move to another page.
 - [Exam](exam/): How to make an exam where it is difficult to cheat.
 - [Swarm](swarm/): Modeling a grid / spin / swarm behavior, and display the different steps using a bokeh slider.
-~                                                                                                        
-~                                                                                                        
-~                                                                                                        
-~                                                                                                        

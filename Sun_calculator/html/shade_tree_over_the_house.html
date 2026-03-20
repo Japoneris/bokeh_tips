@@ -1,0 +1,86 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Tree shade on the house.</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="aad506d1-e366-407a-b35f-ea49e4eaa4b2" data-root-id="1069"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="1235">
+          {"2f81d682-0db7-4130-942a-90075a38f74f":{"roots":{"references":[{"attributes":{"args":{"s_wall":{"id":"1062","type":"Slider"},"source":{"id":"1039","type":"ColumnDataSource"}},"code":"\n        const data = source.data;\n        data.y[1] = s_wall.value;\n        source.change.emit();\n        "},"id":"1067","type":"CustomJS"},{"attributes":{"data_source":{"id":"1038","type":"ColumnDataSource"},"glyph":{"id":"1047","type":"Patch"},"hover_glyph":null,"muted_glyph":null,"name":"ground","nonselection_glyph":{"id":"1048","type":"Patch"},"selection_glyph":null,"view":{"id":"1050","type":"CDSView"}},"id":"1049","type":"GlyphRenderer"},{"attributes":{"callback":null,"overlay":{"id":"1075","type":"PolyAnnotation"}},"id":"1023","type":"LassoSelectTool"},{"attributes":{"args":{"s_dist":{"id":"1063","type":"Slider"},"s_sun":{"id":"1064","type":"Slider"},"s_tree":{"id":"1061","type":"Slider"},"s_wall":{"id":"1062","type":"Slider"},"source":{"id":"1040","type":"ColumnDataSource"},"source_g":{"id":"1038","type":"ColumnDataSource"}},"code":"\n        const data   = source.data;\n        const tree_h = s_tree.value;\n        const wall_h = s_wall.value;\n        const wall_d = s_dist.value;\n        const t_sun = Math.tan((s_sun.value) * 3.14159265359 / 180);\n        \n        const x0 = -2; // Sun first point location\n        const y0 = tree_h - x0 * t_sun;\n        const x1 = tree_h / t_sun; // Max distance of the light to the ground\n        const x2 = wall_h / t_sun + wall_d; // # Distance from the wall if light on wall\n        const y_light = tree_h - t_sun * wall_d;\n\n        var lst_x = [x0]\n        var lst_y = [y0]\n        \n\n\n        if (y_light &lt; wall_h) {\n            const x3 = x2+3 - y0 / t_sun;\n            if (x1 &gt; wall_d) { \n                //lumiere partielle sur le mur\n                lst_x = lst_x.concat([wall_d, wall_d, x2, x2, x2+3, x3]);\n                lst_y = lst_y.concat([y_light, wall_h, 0, 0, 0, y0]);\n            \n            } else { \n                // lumiere totale sur le mur\n                lst_x = lst_x.concat([x1, wall_d, wall_d, x2, x2+3, x3])\n                lst_y = lst_y.concat([0, 0, wall_h, 0, 0, y0])\n            }\n        } else {\n            // Marche OK\n            // Le mur est \u00e0 l'ombre\n            const x3 = x1+3 - y0 / t_sun;\n            lst_x = lst_x.concat([x1, x1+3, x3, x3, x3, x3])\n            lst_y = lst_y.concat([0,  0, y0,   y0, y0, y0])\n\n        }\n        \n\n        //for (var i=0; i&lt;data.x.length; i++) {\n        //    data.x[i] = lst_x[i];\n        //    data.y[i] = lst_y[i];        }\n\n        data.x = lst_x;\n        data.y = lst_y;\n\n        // update floor\n        const ground = source_g.data;\n        const m = Math.max(...lst_x);\n        ground.x = [-2, m+2, m+2, -2]\n\n        source.change.emit();\n        source_g.change.emit();\n        "},"id":"1068","type":"CustomJS"},{"attributes":{"source":{"id":"1038","type":"ColumnDataSource"}},"id":"1050","type":"CDSView"},{"attributes":{},"id":"1024","type":"WheelZoomTool"},{"attributes":{"callback":null,"overlay":{"id":"1076","type":"BoxAnnotation"}},"id":"1025","type":"BoxSelectTool"},{"attributes":{"below":[{"id":"1012","type":"LinearAxis"}],"center":[{"id":"1016","type":"Grid"},{"id":"1021","type":"Grid"}],"left":[{"id":"1017","type":"LinearAxis"}],"match_aspect":true,"plot_height":400,"plot_width":700,"renderers":[{"id":"1044","type":"GlyphRenderer"},{"id":"1049","type":"GlyphRenderer"},{"id":"1054","type":"GlyphRenderer"},{"id":"1059","type":"GlyphRenderer"}],"title":{"id":"1002","type":"Title"},"toolbar":{"id":"1029","type":"Toolbar"},"x_range":{"id":"1004","type":"DataRange1d"},"x_scale":{"id":"1008","type":"LinearScale"},"y_range":{"id":"1006","type":"DataRange1d"},"y_scale":{"id":"1010","type":"LinearScale"}},"id":"1001","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1079","type":"UnionRenderers"},{"attributes":{"fill_alpha":0.4,"fill_color":"gold","line_alpha":0.7,"line_color":"darkorange","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1052","type":"Patch"},{"attributes":{"callback":null},"id":"1026","type":"TapTool"},{"attributes":{"children":[{"id":"1001","subtype":"Figure","type":"Plot"},{"id":"1061","type":"Slider"},{"id":"1063","type":"Slider"},{"id":"1062","type":"Slider"},{"id":"1064","type":"Slider"}]},"id":"1069","type":"Column"},{"attributes":{"fill_alpha":0.1,"fill_color":"#1f77b4","line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1053","type":"Patch"},{"attributes":{},"id":"1027","type":"ResetTool"},{"attributes":{"source":{"id":"1037","type":"ColumnDataSource"}},"id":"1045","type":"CDSView"},{"attributes":{"callback":null,"data":{"x":[-0.5,-0.5,-2,-1,-1.5,-0.5,-1,0,1,0.5,1.5,1,2,0.5,0.5,-0.5],"x0":[-0.5,-0.5,-2,-1,-1.5,-0.5,-1,0,1,0.5,1.5,1,2,0.5,0.5,-0.5],"y":[0.0,0.75,0.75,1.5,1.5,2.25,2.25,3.0,2.25,2.25,1.5,1.5,0.75,0.75,0.0,0.0],"y0":[0.0,0.25,0.25,0.5,0.5,0.75,0.75,1.0,0.75,0.75,0.5,0.5,0.25,0.25,0.0,0.0]},"selected":{"id":"1078","type":"Selection"},"selection_policy":{"id":"1077","type":"UnionRenderers"}},"id":"1037","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"1040","type":"ColumnDataSource"},"glyph":{"id":"1052","type":"Patch"},"hover_glyph":null,"muted_glyph":null,"name":"rays","nonselection_glyph":{"id":"1053","type":"Patch"},"selection_glyph":null,"view":{"id":"1055","type":"CDSView"}},"id":"1054","type":"GlyphRenderer"},{"attributes":{},"id":"1028","type":"SaveTool"},{"attributes":{"fill_alpha":0.1,"fill_color":"#1f77b4","line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1043","type":"Patch"},{"attributes":{"args":{"s_wall":{"id":"1063","type":"Slider"},"source":{"id":"1039","type":"ColumnDataSource"}},"code":"\n        const data = source.data;\n        const v = s_wall.value;\n\n        for (var i=0; i &lt; data.x.length; i++){\n            data.x[i] = v;\n        }\n        source.change.emit();\n        "},"id":"1066","type":"CustomJS"},{"attributes":{"callback":null},"id":"1006","type":"DataRange1d"},{"attributes":{"text":"Shade of a tree over a wall VS sun angle."},"id":"1002","type":"Title"},{"attributes":{"source":{"id":"1040","type":"ColumnDataSource"}},"id":"1055","type":"CDSView"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{},"id":"1072","type":"BasicTickFormatter"},{"attributes":{},"id":"1078","type":"Selection"},{"attributes":{"callback":null,"data":{"x":[-2,1.7320508075688779,4,4,5.154700538379252,8.154700538379252,4.422649730810375],"y":[6.4641016151377535,0,0,2,0,0,6.4641016151377535]},"selected":{"id":"1082","type":"Selection"},"selection_policy":{"id":"1081","type":"UnionRenderers"}},"id":"1040","type":"ColumnDataSource"},{"attributes":{},"id":"1010","type":"LinearScale"},{"attributes":{"line_alpha":0.7,"line_color":"dimgray","line_width":5,"x":{"field":"x"},"y":{"field":"y"}},"id":"1057","type":"Line"},{"attributes":{},"id":"1074","type":"BasicTickFormatter"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1076","type":"BoxAnnotation"},{"attributes":{"callback":null},"id":"1004","type":"DataRange1d"},{"attributes":{"fill_color":"green","line_alpha":0.7,"line_color":"green","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1042","type":"Patch"},{"attributes":{"formatter":{"id":"1074","type":"BasicTickFormatter"},"minor_tick_line_color":{"value":null},"ticker":{"id":"1013","type":"BasicTicker"}},"id":"1012","type":"LinearAxis"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":5,"x":{"field":"x"},"y":{"field":"y"}},"id":"1058","type":"Line"},{"attributes":{},"id":"1077","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1039","type":"ColumnDataSource"},"glyph":{"id":"1057","type":"Line"},"hover_glyph":null,"muted_glyph":null,"name":"wall","nonselection_glyph":{"id":"1058","type":"Line"},"selection_glyph":null,"view":{"id":"1060","type":"CDSView"}},"id":"1059","type":"GlyphRenderer"},{"attributes":{},"id":"1013","type":"BasicTicker"},{"attributes":{},"id":"1080","type":"Selection"},{"attributes":{"ticker":{"id":"1013","type":"BasicTicker"},"visible":false},"id":"1016","type":"Grid"},{"attributes":{"source":{"id":"1039","type":"ColumnDataSource"}},"id":"1060","type":"CDSView"},{"attributes":{},"id":"1081","type":"UnionRenderers"},{"attributes":{"formatter":{"id":"1072","type":"BasicTickFormatter"},"major_tick_line_color":{"value":null},"minor_tick_line_color":{"value":null},"ticker":{"id":"1018","type":"BasicTicker"}},"id":"1017","type":"LinearAxis"},{"attributes":{"callback":null,"end":50,"js_property_callbacks":{"change:value":[{"id":"1065","type":"CustomJS"},{"id":"1068","type":"CustomJS"}]},"start":0.5,"step":0.25,"title":"Tree height","value":3},"id":"1061","type":"Slider"},{"attributes":{},"id":"1082","type":"Selection"},{"attributes":{"callback":null,"end":50,"js_property_callbacks":{"change:value":[{"id":"1067","type":"CustomJS"},{"id":"1068","type":"CustomJS"}]},"start":0.5,"step":0.25,"title":"Wall height","value":2},"id":"1062","type":"Slider"},{"attributes":{},"id":"1018","type":"BasicTicker"},{"attributes":{},"id":"1083","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1037","type":"ColumnDataSource"},"glyph":{"id":"1042","type":"Patch"},"hover_glyph":null,"muted_glyph":null,"name":"tree","nonselection_glyph":{"id":"1043","type":"Patch"},"selection_glyph":null,"view":{"id":"1045","type":"CDSView"}},"id":"1044","type":"GlyphRenderer"},{"attributes":{"callback":null,"end":100,"js_property_callbacks":{"change:value":[{"id":"1066","type":"CustomJS"},{"id":"1068","type":"CustomJS"}]},"start":0,"step":0.25,"title":"Wall-Tree distance","value":4},"id":"1063","type":"Slider"},{"attributes":{"dimension":1,"ticker":{"id":"1018","type":"BasicTicker"}},"id":"1021","type":"Grid"},{"attributes":{},"id":"1084","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"xs_units":"screen","ys_units":"screen"},"id":"1075","type":"PolyAnnotation"},{"attributes":{"callback":null,"end":89,"js_property_callbacks":{"change:value":[{"id":"1068","type":"CustomJS"}]},"start":1,"step":0.25,"title":"Sun angle","value":60},"id":"1064","type":"Slider"},{"attributes":{"callback":null,"data":{"x":[4,4],"y":[0,2]},"selected":{"id":"1084","type":"Selection"},"selection_policy":{"id":"1083","type":"UnionRenderers"}},"id":"1039","type":"ColumnDataSource"},{"attributes":{"callback":null,"data":{"x":[-2,12,12,-2],"y":[0,0,-0.5,-0.5]},"selected":{"id":"1080","type":"Selection"},"selection_policy":{"id":"1079","type":"UnionRenderers"}},"id":"1038","type":"ColumnDataSource"},{"attributes":{"fill_color":"saddlebrown","line_alpha":0.7,"line_color":"brown","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1047","type":"Patch"},{"attributes":{"args":{"s_tree":{"id":"1061","type":"Slider"},"source":{"id":"1037","type":"ColumnDataSource"}},"code":"\n        const data = source.data;\n        const v = s_tree.value;\n        const vv = Math.sqrt(v);\n\n        for (var i=0; i &lt; data.x.length; i++){\n            // data.x[i] = data.x0[i] * vv; /// With of the tree...\n            data.y[i] = data.y0[i] * v;\n        }\n\n        source.change.emit();\n        "},"id":"1065","type":"CustomJS"},{"attributes":{"fill_alpha":0.1,"fill_color":"#1f77b4","line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"1048","type":"Patch"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1022","type":"PanTool"},{"id":"1023","type":"LassoSelectTool"},{"id":"1024","type":"WheelZoomTool"},{"id":"1025","type":"BoxSelectTool"},{"id":"1026","type":"TapTool"},{"id":"1027","type":"ResetTool"},{"id":"1028","type":"SaveTool"}]},"id":"1029","type":"Toolbar"},{"attributes":{},"id":"1022","type":"PanTool"}],"root_ids":["1069"]},"title":"Bokeh Application","version":"1.4.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('1235').textContent;
+                  var render_items = [{"docid":"2f81d682-0db7-4130-942a-90075a38f74f","roots":{"1069":"aad506d1-e366-407a-b35f-ea49e4eaa4b2"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
